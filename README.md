@@ -35,8 +35,8 @@ pip install selenium numpy requests
 脚本已配置使用您指定的Chrome浏览器路径：
 
 ```python
-option.binary_location = r"D:\左莉豪\Downloads\chrome-win64\chrome-win64\chrome.exe"
-service = Service(executable_path=r"D:\左莉豪\Downloads\chrome-win64\chrome-win64\chromedriver.exe")
+option.binary_location = r"chrome.exe路径"
+service = Service(executable_path=r"chromedriver.exe路径")
 ```
 
 ### 2. 问卷链接配置
