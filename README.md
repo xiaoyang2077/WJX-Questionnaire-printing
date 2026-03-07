@@ -31,12 +31,11 @@ pip install selenium numpy requests
 ## 配置说明
 
 ### 1. 浏览器路径配置
-
-脚本已配置使用您指定的Chrome浏览器路径：
+chrome浏览器驱动及chrome浏览器下载地址：https://developer.chrome.com/docs/chromedriver/downloads?hl=zh-tw
+注：下载时需要保证版本一致，如已经下载版本浏览器，可在chrome浏览器打开chrome://version 查看对应版本号，再下载对应版本的chromedrive
 
 ```python
 option.binary_location = r"chrome.exe路径"
-service = Service(executable_path=r"chromedriver.exe路径")
 ```
 
 ### 2. 问卷链接配置
