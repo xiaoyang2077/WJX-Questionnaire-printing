@@ -17,20 +17,13 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
 """
-任何疑问，请加qq群咨询：774326264 || 427847187 || 850281779 || 931614446
-代码简洁版：https://github.com/Zemelee/wjx/blob/master/wjx.py  ---  视频教程： https://www.bilibili.com/video/BV1qc411T7CG/
-除了python，作者还发布了js版脚本在scriptcat和greasyfork上，名字就叫“问卷星脚本”，不带任何前后缀，比py更方便且支持跳题逻辑：
-    scriptcat地址：https://scriptcat.org/zh-CN/script-show-page/2833
-    greasyfork地址：https://greasyfork.org/zh-CN/scripts/466722-%E9%97%AE%E5%8D%B7%E6%98%9F%E8%84%9A%E6%9C%AC
-    相关系列教程：https://space.bilibili.com/29109990/channel/collectiondetail?sid=1340503&ctype=0
-
 代码使用规则：
     你需要提前安装python环境，且已具备上述的所有安装包
-    还需要下载好chrome的chromeDriver自动化工具（chrome版本号需要和chromedriver匹配，具体参考教程）
+    还需要下载好chrome的chromeDriver自动化工具（chrome版本号需要和chromedriver匹配）
     并将chromeDriver放在python安装目录下，以便和selenium配套使用，准备工作做好即可直接运行
     按要求填写比例值并替换成自己的问卷链接即可运行你的问卷。
     虽然但是！！！即使正确填写概率值，不保证100%成功运行，因为代码再强大也强大不过问卷星的灵活性，别问我怎么知道的，都是泪
-    如果有疑问可以进群提问，或者直接通过代刷网 http://sugarblack.top 直接刷问卷
+    如果有疑问可以加QQ提问，或者直接通过代刷网 http://sugarblack.top 直接刷问卷
 """
 
 """
@@ -52,7 +45,7 @@ def zanip():
 
 # 示例问卷,试运行结束后,需要改成你的问卷地址
 # 一个可以代刷问卷星的网站： http://sugarblack.top
-url = "https://v.wjx.cn/vm/e72K0lp.aspx"
+url = "https://v.wjx.cn/vm/PbRffk2.aspx"
 
 """
 单选题概率参数，"1"表示第一题，0表示不选， [30, 70]表示3:7，-1表示随机
@@ -62,15 +55,28 @@ url = "https://v.wjx.cn/vm/e72K0lp.aspx"
 这个single_prob的"5"可以改成其他任何值，当然我不建议你这么干，因为问卷中只有5个单选题，所以第6个单选题的参数其实是没有用上的，参数只能多不能少！！！（这一点其他类型的概率参数也适用）
 """
 single_prob = {
-    "1": [1, 1, 1, 1],
-    "2": [1, 1, 1, 1],
-    "3": [1, 1, 1, 1],
-    "4": [1, 1, 1, 1],
-    "5": [1, 1, 1, 1],
-    "6": [1, 1, 1, 1],
-    "7": [1, 1, 1, 1],
+    "1": [1, 1],   #学生基本性别
+    "2": [5, 10, 30, 40, 15],   #发现问题
+    "3": [2, 4, 16, 48, 30], 
+    "4": [2, 5, 17, 45, 31],     #系统思考
+    "5": [5, 17.3, 13.6, 25.7, 8.4], 
+    "6": [13, 36, 33.2, 14.8, 3], 
+    "7": [5.4, 13.9, 38.6, 25.3, 16.8],  
+    "8": [2, 9.9, 31.7, 43.6, 12.8],     #创造性
+    "9": [4.5, 13.9, 31.2, 34.7, 15.7],
+    "10": [4, 17.3, 45.5, 24.8, 8.4],
+    "11": [0, 0, 1, 0, 0],    #测试问题
+    "12": [22.8, 47, 22.8, 5.9, 1.5],    #可视化
+    "13": [4, 5.4, 11.9, 35.6, 43.1],
+    "14": [3.5, 16.3, 45.5, 26.3, 8.4],    #改进
+    "15": [4.4, 18.8, 36.6, 24.3, 9.9],
+    "16": [5, 14.9, 33.7, 34.6, 11.8],
+    "17": [6.9, 17.3, 35.2, 23.8, 16.8],    
+    "18": [5, 10.9, 22.8, 40.1, 21.2],     #适应
+    "19": [2, 8.9, 26.2, 45.5, 17.4],
+    "20": [12.3, 42.1, 30.7, 12.4, 2.5],
+    "21": [5, 18.8, 47, 22.3, 6.9],
 }
-
 # 下拉框参数，具体含义参考单选题，如果没有下拉框题也不要删，就让他躺在这儿吧，其他题也是哦，没有就不动他，别删，只改你有的题型的参数就好啦
 droplist_prob = {"1": [2, 1, 1]}
 
@@ -78,8 +84,7 @@ droplist_prob = {"1": [2, 1, 1]}
 # 表示每个选项选择的概率，100表示必选，30表示选择B的概率为30；不能写[1,1,1,1]这种比例了，不然含义为选ABCD的概率均为1%
 # 最好保证概率和加起来大于100
 multiple_prob = {
-    "1": [20, 20, 20, 20, 20],
-    "2": [20, 20, 20, 20, 20]
+    "1": [80, 30, 30, 30, 0]
 }
 # multiple_opts = {"9": 1, }   此参数已失效，可不必理会2024.3.28
 
@@ -370,6 +375,7 @@ def submit(driver: WebDriver):
 
 def run(xx, yy):
     option = webdriver.ChromeOptions()
+    option.binary_location = r"你的chrome.exe路径"
     option.add_experimental_option("excludeSwitches", ["enable-automation"])
     option.add_experimental_option("useAutomationExtension", False)
     global cur_num, cur_fail
@@ -380,7 +386,6 @@ def run(xx, yy):
         driver = webdriver.Chrome(options=option)
         driver.set_window_size(550, 650)
         driver.set_window_position(x=xx, y=yy)
-        # 有学过 vue2 的吗, Object.defineProperty 这个 api 是不是很眼熟啊哈哈哈
         driver.execute_cdp_cmd(
             "Page.addScriptToEvaluateOnNewDocument",
             {
@@ -424,7 +429,7 @@ def run(xx, yy):
 # 多线程执行run函数
 if __name__ == "__main__":
     # 一个可以代刷问卷星的网站： http://sugarblack.top
-    target_num = 3  # 目标份数
+    target_num = 200  # 目标份数
     # 失败阈值，数值可自行修改为固定整数
     fail_threshold = target_num / 4 + 1
     cur_num = 0  # 已提交份数
@@ -453,7 +458,4 @@ if __name__ == "__main__":
 
 """
     总结,你需要修改的有: 1 每个题的比例参数(必改)  2 问卷链接(必改)  3 ip链接(可选)  4 浏览器窗口数量(可选)
-    有疑问可以加qq群喔: 774326264 || 427847187 || 850281779 || 931614446; 
-    虽然我不一定回hhh, 但是群友们不一定不回
-    Presented by 鐘
 """
