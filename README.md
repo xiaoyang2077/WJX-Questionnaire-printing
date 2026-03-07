@@ -26,6 +26,10 @@
 
 ```bash
 pip install selenium numpy requests
+或者
+pip3 install requests -i https://pypi.tuna.tsinghua.edu.cn/simple # 用于网络请求
+pip3 install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple # 用于比例计算
+pip3 install selenium -i https://pypi.tuna.tsinghua.edu.cn/simple # 浏览器自动化核心
 ```
 
 ## 配置说明
@@ -134,11 +138,8 @@ python wjx.py
 
 ## 技术支持
 
-如有问题，可参考原作者提供的QQ群：
-- 774326264
-- 427847187
-- 850281779
-- 931614446
+如有问题，可联系作者QQ：
+- 3150673606
 
 ---
 
